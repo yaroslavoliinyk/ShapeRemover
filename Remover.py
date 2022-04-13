@@ -22,6 +22,7 @@ Shape = namedtuple("Shape", ["SKind", "area", "x", "y", "width", "height"])
 # cv2.waitKey(0)
 (numLabels, labels, stats, centroids) = output
 ShapeKind.height, ShapeKind.width = shapes.shape[:2]
+displayable = 1
 for i, (x1, y1, w, h, area) in enumerate(stats[1:]):
     height, width = shapes.shape[:2]
     # if area > height * width * 0.0001:
@@ -45,13 +46,14 @@ for i, (x1, y1, w, h, area) in enumerate(stats[1:]):
         )
         cv2.putText(
             shapes,
-            f"{shape_kind.get_color(), name} #{i+1}",
+            f"{shape_kind.get_color(), name} #{displayable}",
             (int(centroids[i + 1][0] - 10), int(centroids[i + 1][1] - 10)),
             cv2.FONT_HERSHEY_SIMPLEX,
             1,
             (0, 0, 0),
             2,
         )
+        displayable += 1
 
 cv2.imshow("Image", shapes)
 cv2.waitKey(0)
