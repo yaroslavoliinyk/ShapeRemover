@@ -6,7 +6,7 @@ import argparse
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument(
-    "-i", "--image", required=False, help="path to input image", default="shapes2.png"
+    "-i", "--image", required=False, help="path to input image", default="shapes.png"
 )
 ap.add_argument("-rm", "--remove", required=False, help="path to output image")
 args = vars(ap.parse_args())

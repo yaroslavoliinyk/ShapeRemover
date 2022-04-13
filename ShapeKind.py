@@ -73,7 +73,7 @@ class ShapeKind:
         ):
             return Shapes.ELLIPSE
         points_num, found_area = self.__points_info()
-        if math.isclose(found_area, self.__area, abs_tol=self.__area * 0.02):
+        if math.isclose(found_area, self.__area, abs_tol=self.__area * 0.05):
             return Shapes.RECTANGLE
         # a = self.shape_thresh[23, :]
         # i, val = self.check_row_test(np.where(a==255)[0])
