@@ -1,5 +1,6 @@
 class Color:
     def __init__(self, b, g, r):
+        self.b, self.g, self.r = b, g, r
         if b > r and b > g:
             self.name = "Blue"
         elif g > r and g > b:
@@ -15,4 +16,4 @@ class Color:
         return self.name
 
     def __repr__(self):
-        return self.name
+        return f"{Color.__name__}({self.b}, {self.g}, {self.r})"

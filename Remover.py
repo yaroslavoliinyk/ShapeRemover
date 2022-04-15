@@ -11,23 +11,18 @@ ap.add_argument(
 ap.add_argument("-rm", "--remove", required=False, help="path to output image")
 args = vars(ap.parse_args())
 
-
 image = cv2.imread(args["image"])
 shapes = image.copy()
 gray = cv2.cvtColor(shapes, cv2.COLOR_BGR2GRAY)
 thresh = cv2.threshold(gray, 250, 255, cv2.THRESH_BINARY_INV)[1]
 output = cv2.connectedComponentsWithStats(thresh, 4, cv2.CV_32S)
 Shape = namedtuple("Shape", ["SKind", "area", "x", "y", "width", "height"])
-# cv2.imshow("Thresh", thresh)
-# cv2.waitKey(0)
 (numLabels, labels, stats, centroids) = output
 ShapeKind.height, ShapeKind.width = shapes.shape[:2]
 displayable = 1
 for i, (x1, y1, w, h, area) in enumerate(stats[1:]):
     height, width = shapes.shape[:2]
-    # if area > height * width * 0.0001:
     shape_kind = ShapeKind(image, thresh, x1, y1, w, h, centroids[i + 1], area, i + 1)
-
     name = shape_kind.get_shape()
     if args["remove"] and name in args["remove"]:
         cv2.rectangle(
