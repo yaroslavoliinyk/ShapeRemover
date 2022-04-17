@@ -1,10 +1,22 @@
 from Shapes import Shapes
-from collections import namedtuple
 from Colors import Color
 import math
 import numpy as np
 
-Point = namedtuple("Point", ["x", "y"])
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def distance(self, other):
+        return math.sqrt((self.x - other.x) ** 2 + (self.y - other.y) ** 2)
+
+    def __str__(self):
+        return "({}, {})".format(self.x, self.y)
+
+    def __repr__(self):
+        return "({}, {})".format(self.x, self.y)
 
 
 class AreaCalculator:
